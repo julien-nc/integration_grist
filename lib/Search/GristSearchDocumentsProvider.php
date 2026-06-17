@@ -96,7 +96,7 @@ class GristSearchDocumentsProvider implements IProvider, IExternalProvider {
 		if ($baseUrl == 'https://docs.getgrist.com/') {
 			$baseUrl = 'getgrist.com/';
 		}
-		if (!$this->userConfig->getValueString($this->userId, Application::APP_ID, 'use_subdomain', true)) {
+		if (!$this->userConfig->getValueBool($this->userId, Application::APP_ID, 'use_subdomain', true)) {
 			return $baseUrl . 'o/' . $domain . '/' . $urlId;
 		}
 
