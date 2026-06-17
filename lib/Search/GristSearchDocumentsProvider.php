@@ -31,6 +31,7 @@ class GristSearchDocumentsProvider implements IProvider, IExternalProvider {
 		private IURLGenerator $urlGenerator,
 		private GristAPIService $service,
 		private UtilsService $utilsService,
+		private string $userId,
 	) {
 	}
 
@@ -64,17 +65,19 @@ class GristSearchDocumentsProvider implements IProvider, IExternalProvider {
 	 */
 	public function search(IUser $user, ISearchQuery $query): SearchResult {
 		$orgs = $this->service->listOrgs($user->getUID());
+		error_log(json_encode($orgs));
 		$results = [];
 		foreach ($orgs as $org) {
 			$workspaces = $this->service->listWorkspacesPerOrg($user->getUID(), $org['id']);
 			foreach ($workspaces as $workspace) {
 				foreach ($workspace['docs'] as $doc) {
+					error_log(json_encode($doc));
 					if (str_contains(strtolower($doc['name']), strtolower($query->getTerm()))) {
 						$results[] = new SearchResultEntry(
 										'',
 										$doc['name'],
 										$org['name'] . ' -> ' . $workspace['name'],
-										'https://link.com',
+										$this->getDocumentUrl($org['domain'], $doc['urlId']),
 										'',
 										true
 									);
@@ -86,6 +89,16 @@ class GristSearchDocumentsProvider implements IProvider, IExternalProvider {
 			$this->getName(),
 			$results
 		);
+	}
+
+	private function getDocumentUrl(string $domain, string $urlId): string {
+		$baseUrl = $this->userConfig->getValueString($this->userId, Application::APP_ID, 'url');
+		if ($baseUrl == 'https://docs.getgrist.com/') {
+			$baseUrl = 'getgrist.com/';
+		}
+
+		return 'https://' . $domain . '.' . $baseUrl . $urlId;
+
 	}
 
 	public function isExternalProvider(): bool {

@@ -81,10 +81,6 @@ class GristReferenceProvider extends ADiscoverableReferenceProvider implements I
 	 */
 	public function matchReference(string $referenceText): bool {
 		$url = $this->userConfig->getValueString($this->userId, Application::APP_ID, 'url');
-		error_log("MATCHING");
-		error_log($referenceText);
-		error_log('/^' . preg_quote($url, '/') . '[0-9a-zA-Z]+\/.+/');
-		error_log(json_encode(preg_match('/^' . preg_quote($url, '/') . '[0-9a-zA-Z]+\/.+/', $referenceText) === 1));
 		return preg_match('/^' . preg_quote($url, '/') . '[0-9a-zA-Z]+\/.+/', $referenceText) === 1;
 	}
 
