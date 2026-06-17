@@ -80,20 +80,13 @@ class GristReferenceProvider extends ADiscoverableReferenceProvider implements I
 	 * @inheritDoc
 	 */
 	public function matchReference(string $referenceText): bool {
-		$url = $this->userConfig->getValueString($this->userId, Application::APP_ID, 'url');
-		return preg_match('/^' . preg_quote($url, '/') . '[0-9a-zA-Z]+\/.+/', $referenceText) === 1;
+		return false;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function resolveReference(string $referenceText): ?IReference {
-		error_log("RESOLVING");
-		if ($this->matchReference($referenceText)) {
-			$reference = new Reference($referenceText);
-			$reference->setTitle('ref title');
-			return $reference;
-		}
 		return null;
 	}
 

@@ -65,20 +65,18 @@ class GristSearchDocumentsProvider implements IProvider, IExternalProvider {
 	 */
 	public function search(IUser $user, ISearchQuery $query): SearchResult {
 		$orgs = $this->service->listOrgs($user->getUID());
-		error_log(json_encode($orgs));
 		$results = [];
 		foreach ($orgs as $org) {
 			$workspaces = $this->service->listWorkspacesPerOrg($user->getUID(), $org['id']);
 			foreach ($workspaces as $workspace) {
 				foreach ($workspace['docs'] as $doc) {
-					error_log(json_encode($doc));
 					if (str_contains(strtolower($doc['name']), strtolower($query->getTerm()))) {
 						$results[] = new SearchResultEntry(
-										'',
+										$this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $doc['name'], 'size' => 42]),
 										$doc['name'],
 										$org['name'] . ' -> ' . $workspace['name'],
 										$this->getDocumentUrl($org['domain'], $doc['urlId']),
-										'',
+										$this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $doc['name'], 'size' => 42]),
 										true
 									);
 					}
