@@ -76,7 +76,7 @@ class GristSearchDocumentsProvider implements IProvider, IExternalProvider {
 										$doc['name'],
 										$org['name'] . ' -> ' . $workspace['name'],
 										$this->getDocumentUrl($org['domain'], $doc['urlId']),
-										$this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $doc['name'], 'size' => 42]),
+										'',
 										true
 									);
 					}
