@@ -1,0 +1,4 @@
+# compiled vue templates
+js/
+vendor/
+vendor-bin/
