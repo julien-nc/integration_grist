@@ -122,7 +122,7 @@ class GristAPIService {
 				'body' => $parsedResponseBody,
 			];
 		} catch (Exception|Throwable $e) {
-			$this->logger->warning('Grsit API request error', ['exception' => $e]);
+			$this->logger->warning('Grist API request error', ['exception' => $e]);
 			return ['error' => $e->getMessage()];
 		}
 	}
