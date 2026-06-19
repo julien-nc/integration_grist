@@ -90,15 +90,16 @@ class GristSearchDocumentsProvider implements IProvider, IExternalProvider {
 	}
 
 	private function getDocumentUrl(string $domain, string $urlId): string {
-		$baseUrl = $this->userConfig->getValueString($this->userId, Application::APP_ID, 'url');
 		if ($baseUrl == 'https://docs.getgrist.com/') {
+			// hosted instance used
 			$baseUrl = 'getgrist.com/';
-		}
-		if (!$this->userConfig->getValueBool($this->userId, Application::APP_ID, 'use_subdomain', true)) {
+			return 'https://' . $domain . '.' . $baseUrl . $urlId;
+		} 
+		// self-hosted with path prefixes for teams
+		// self-hosted with subdomains is not supported: https://community.getgrist.com/t/teams-as-subdomains-on-self-hosted-instead-of-subfolders/6570
 			return $baseUrl . 'o/' . $domain . '/' . $urlId;
-		}
 
-		return 'https://' . $domain . '.' . $baseUrl . $urlId;
+		
 
 	}
 
