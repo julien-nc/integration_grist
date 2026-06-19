@@ -11,8 +11,7 @@
 			<NcTextField
 				v-model="state.url"
 				:label="t('integration_grist', 'Grist instance address')"
-				placeholder="https://getgrist.com/"
-				:disabled="connected === true"
+				placeholder="https://docs.getgrist.com/"
 				:show-trailing-button="!!state.url"
 				@trailing-button-click="state.url = ''; onInput()"
 				@update:model-value="onInput">
@@ -25,7 +24,6 @@
 				type="password"
 				:label="t('integration_grist', 'API key')"
 				:placeholder="t('integration_grist', 'Grist API key')"
-				:disabled="connected === true"
 				:show-trailing-button="!!state.token"
 				@trailing-button-click="state.token = ''; onInput()"
 				@update:model-value="onInput">
@@ -33,11 +31,6 @@
 					<KeyOutlineIcon :size="20" />
 				</template>
 			</NcTextField>
-			<NcFormBoxSwitch
-				v-model="state.use_subdomain"
-				@update:model-value="onUseSubdomainChanged">
-				{{ t('integration_grist', 'Use subdomains for teams') }}
-			</NcFormBoxSwitch>
 		</div>
 	</div>
 </template>
@@ -50,7 +43,6 @@ import GristIcon from './icons/GristIcon.vue'
 
 import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
 import NcTextField from '@nextcloud/vue/components/NcTextField'
-import NcFormBoxSwitch from '@nextcloud/vue/components/NcFormBoxSwitch'
 
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
@@ -69,7 +61,6 @@ export default {
 		GristIcon,
 		EarthIcon,
 		KeyOutlineIcon,
-		NcFormBoxSwitch,
 	},
 
 	props: [],
@@ -83,22 +74,12 @@ export default {
 	},
 
 	computed: {
-		connected() {
-			return this.state.token && this.state.token !== ''
-				&& this.state.url && this.state.url !== ''
-				&& this.state.user_name && this.state.user_name !== ''
-		},
 	},
 
 	mounted() {
-		console.error(this.state)
 	},
 
 	methods: {
-		onLogoutClick() {
-			this.state.token = ''
-			this.saveOptions({ token: this.state.token })
-		},
 		onInput() {
 			this.loading = true
 			delay(() => {
@@ -111,9 +92,6 @@ export default {
 					})
 				}
 			}, 2000)()
-		},
-		onUseSubdomainChanged(newValue) {
-			this.saveOptions({ use_subdomain: newValue ? '1' : '0' })
 		},
 		async saveOptions(values) {
 			await confirmPassword()

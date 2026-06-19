@@ -60,11 +60,6 @@ class GristController extends Controller {
 			if ($key === 'token' && $value !== '') {
 				$this->utilsService->setEncryptedUserValueString($this->userId, $key, trim($value));
 			} 
-			else if ($key === 'use_subdomain') {
-				error_log($value);
-				$this->userConfig->setValueBool($this->userId, Application::APP_ID, $key, $value == 1 ? true : false);
-
-			}
 			else {
 				$this->userConfig->setValueString($this->userId, Application::APP_ID, $key, trim($value, " /\n\r\t\v\x00") . '/');
 			}

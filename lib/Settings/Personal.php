@@ -26,14 +26,12 @@ class Personal implements ISettings {
 	public function getForm(): TemplateResponse {
 
 		$token = $this->userConfig->getValueString($this->userId, Application::APP_ID, 'token');
-		$use_subdomain = $this->userConfig->getValueBool($this->userId, Application::APP_ID, 'use_subdomain', $default = true);
 		$url = $this->userConfig->getValueString($this->userId, Application::APP_ID, 'url');
 
 		$initialUserConfig = [
 			// don't expose the token to the user
 			'token' => $token === '' ? '' : 'dummyToken',
 			'url' => $url,
-			'use_subdomain' => $use_subdomain,
 		];
 		$this->initialStateService->provideInitialState('user-config', $initialUserConfig);
 		return new TemplateResponse(Application::APP_ID, 'personalSettings');
