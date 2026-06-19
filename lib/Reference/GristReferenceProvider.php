@@ -41,7 +41,6 @@ class GristReferenceProvider extends ADiscoverableReferenceProvider implements I
 	 * @inheritDoc
 	 */
 	public function getId(): string {
-		error_log("GET ID");
 		return 'grist-documents';
 	}
 
