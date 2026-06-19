@@ -1,5 +1,7 @@
 # Grist Integration 
 
+![Smart picker screenshot](img/screenshot1.png)
+
 The Grist integration connects Nextcloud to a self-hosted or vendor-hosted Grist account, providing a 
 	unified search provider and a smart picker component for documents.
 
