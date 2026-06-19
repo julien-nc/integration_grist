@@ -3,8 +3,9 @@
 	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
 	<id>integration_grist</id>
 	<name>Grist Integration</name>
-	<summary>Grist Integration</summary>
-	<description>Grist Integration</description>
+	<summary>Connect to your Grist instance to search for documents and add links via Smart Picker</summary>
+	<description><![CDATA[The Grist integration connects Nextcloud to a self-hosted or vendor-hosted Grist account, providing a 
+	unified search provider and a smart picker component for documents.]]></description>
 	<version>1.0.0</version>
 	<licence>AGPL-3.0-or-later</licence>
 	<author mail="jana.peper@nextcloud.com" homepage="">Jana Peper</author>
