@@ -91,6 +91,7 @@ class GristSearchDocumentsProvider implements IProvider, IExternalProvider {
 	}
 
 	private function getDocumentUrl(string $domain, string $urlId): string {
+		$baseUrl = $this->userConfig->getValueString($this->userId, Application::APP_ID, 'url');
 		if ($baseUrl == 'https://docs.getgrist.com/') {
 			// hosted instance used
 			$baseUrl = 'getgrist.com/';
