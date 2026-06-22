@@ -11,7 +11,6 @@ use OCA\IntegrationGrist\AppInfo\Application;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\Config\IUserConfig;
-
 use OCP\Security\ICrypto;
 use OCP\Settings\ISettings;
 

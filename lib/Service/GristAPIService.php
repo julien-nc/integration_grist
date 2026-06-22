@@ -11,9 +11,9 @@ use Exception;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use OCA\IntegrationGrist\AppInfo\Application;
+use OCP\Config\IUserConfig;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
-use OCP\Config\IUserConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
@@ -41,8 +41,6 @@ class GristAPIService {
 		$this->client = $clientService->newClient();
 	}
 
-
-
 	public function listOrgs(string $userId) {
 		$orgs = $this->request($userId, 'orgs');
 		return $orgs;
@@ -51,9 +49,7 @@ class GristAPIService {
 	public function listWorkspacesPerOrg(string $userId, int $orgId) {
 		$workspaces = $this->request($userId, 'orgs/' . $orgId . '/workspaces');
 		return $workspaces;
-
 	}
-
 
 	/**
 	 * Make an authenticated HTTP request to Grist

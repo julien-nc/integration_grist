@@ -64,8 +64,7 @@ class GristController extends Controller {
 		foreach ($values as $key => $value) {
 			if ($key === 'token' && $value !== '') {
 				$this->utilsService->setEncryptedUserValueString($this->userId, $key, trim($value));
-			} 
-			else {
+			} else {
 				$this->userConfig->setValueString($this->userId, Application::APP_ID, $key, trim($value, " /\n\r\t\v\x00") . '/');
 			}
 		}

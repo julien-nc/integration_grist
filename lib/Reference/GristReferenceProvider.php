@@ -7,8 +7,6 @@
 
 namespace OCA\IntegrationGrist\Reference;
 
-use DateTime;
-use Exception;
 use OC\Collaboration\Reference\ReferenceManager;
 use OCA\IntegrationGrist\AppInfo\Application;
 use OCA\IntegrationGrist\Service\GristAPIService;
@@ -21,7 +19,6 @@ use OCP\IL10N;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 use OCP\IURLGenerator;
-use Throwable;
 
 class GristReferenceProvider extends ADiscoverableReferenceProvider implements ISearchableReferenceProvider {
 
@@ -73,7 +70,6 @@ class GristReferenceProvider extends ADiscoverableReferenceProvider implements I
 	public function getSupportedSearchProviderIds(): array {
 		return ['grist-search-documents'];
 	}
-
 
 	/**
 	 * @inheritDoc
