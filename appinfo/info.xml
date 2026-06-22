@@ -8,7 +8,7 @@
 	unified search provider and a smart picker component for documents.]]></description>
 	<version>1.0.0</version>
 	<licence>AGPL-3.0-or-later</licence>
-	<author mail="jana.peper@nextcloud.com" homepage="">Jana Peper</author>
+	<author mail="jana.peper@nextcloud.com">Jana Peper</author>
 	<namespace>IntegrationGrist</namespace>
 	<category>office</category>
 	<category>organization</category>

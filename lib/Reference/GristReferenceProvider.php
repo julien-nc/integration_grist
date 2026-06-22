@@ -1,14 +1,12 @@
 <?php
 
 /**
- * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 namespace OCA\IntegrationGrist\Reference;
 
-use DateTime;
-use Exception;
 use OC\Collaboration\Reference\ReferenceManager;
 use OCA\IntegrationGrist\AppInfo\Application;
 use OCA\IntegrationGrist\Service\GristAPIService;
@@ -21,7 +19,6 @@ use OCP\IL10N;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 use OCP\IURLGenerator;
-use Throwable;
 
 class GristReferenceProvider extends ADiscoverableReferenceProvider implements ISearchableReferenceProvider {
 
@@ -73,7 +70,6 @@ class GristReferenceProvider extends ADiscoverableReferenceProvider implements I
 	public function getSupportedSearchProviderIds(): array {
 		return ['grist-search-documents'];
 	}
-
 
 	/**
 	 * @inheritDoc

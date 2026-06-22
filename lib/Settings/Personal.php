@@ -1,12 +1,16 @@
 <?php
 
+/**
+ * SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
 namespace OCA\IntegrationGrist\Settings;
 
 use OCA\IntegrationGrist\AppInfo\Application;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\Config\IUserConfig;
-
 use OCP\Security\ICrypto;
 use OCP\Settings\ISettings;
 

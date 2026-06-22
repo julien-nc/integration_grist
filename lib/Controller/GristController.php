@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
 declare(strict_types=1);
 
 namespace OCA\IntegrationGrist\Controller;
@@ -59,8 +64,7 @@ class GristController extends Controller {
 		foreach ($values as $key => $value) {
 			if ($key === 'token' && $value !== '') {
 				$this->utilsService->setEncryptedUserValueString($this->userId, $key, trim($value));
-			} 
-			else {
+			} else {
 				$this->userConfig->setValueString($this->userId, Application::APP_ID, $key, trim($value, " /\n\r\t\v\x00") . '/');
 			}
 		}

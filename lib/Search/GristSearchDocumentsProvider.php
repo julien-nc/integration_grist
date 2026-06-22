@@ -3,9 +3,10 @@
 declare(strict_types=1);
 
 /**
- * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
 namespace OCA\IntegrationGrist\Search;
 
 use OCA\IntegrationGrist\AppInfo\Application;
@@ -54,7 +55,7 @@ class GristSearchDocumentsProvider implements IProvider, IExternalProvider {
 	 */
 	public function getOrder(string $route, array $routeParameters): int {
 		if (strpos($route, Application::APP_ID . '.') === 0) {
-		 	return -1;
+			return -1;
 		}
 
 		return 20;
@@ -72,13 +73,13 @@ class GristSearchDocumentsProvider implements IProvider, IExternalProvider {
 				foreach ($workspace['docs'] as $doc) {
 					if (str_contains(strtolower($doc['name']), strtolower($query->getTerm()))) {
 						$results[] = new SearchResultEntry(
-										$this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $doc['name'], 'size' => 42]),
-										$doc['name'],
-										$org['name'] . ' -> ' . $workspace['name'],
-										$this->getDocumentUrl($org['domain'], $doc['urlId']),
-										'',
-										true
-									);
+							$this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $doc['name'], 'size' => 42]),
+							$doc['name'],
+							$org['name'] . ' -> ' . $workspace['name'],
+							$this->getDocumentUrl($org['domain'], $doc['urlId']),
+							'',
+							true
+						);
 					}
 				}
 			}
@@ -90,17 +91,15 @@ class GristSearchDocumentsProvider implements IProvider, IExternalProvider {
 	}
 
 	private function getDocumentUrl(string $domain, string $urlId): string {
+		$baseUrl = $this->userConfig->getValueString($this->userId, Application::APP_ID, 'url');
 		if ($baseUrl == 'https://docs.getgrist.com/') {
 			// hosted instance used
 			$baseUrl = 'getgrist.com/';
 			return 'https://' . $domain . '.' . $baseUrl . $urlId;
-		} 
+		}
 		// self-hosted with path prefixes for teams
 		// self-hosted with subdomains is not supported: https://community.getgrist.com/t/teams-as-subdomains-on-self-hosted-instead-of-subfolders/6570
-			return $baseUrl . 'o/' . $domain . '/' . $urlId;
-
-		
-
+		return $baseUrl . 'o/' . $domain . '/' . $urlId;
 	}
 
 	public function isExternalProvider(): bool {
